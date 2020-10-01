@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApiSocialFilm", "RestApiSocialFilm.csproj", "{A757A8F8-BD8C-4AF5-9458-1D3FE4280CB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBaseAccess", "DataBaseAccess\DataBaseAccess.csproj", "{6243CE38-3BDC-4327-8F8A-53C000B31EEF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A757A8F8-BD8C-4AF5-9458-1D3FE4280CB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A757A8F8-BD8C-4AF5-9458-1D3FE4280CB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A757A8F8-BD8C-4AF5-9458-1D3FE4280CB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A757A8F8-BD8C-4AF5-9458-1D3FE4280CB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6243CE38-3BDC-4327-8F8A-53C000B31EEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6243CE38-3BDC-4327-8F8A-53C000B31EEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6243CE38-3BDC-4327-8F8A-53C000B31EEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6243CE38-3BDC-4327-8F8A-53C000B31EEF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C0374B23-4DB2-4119-BB5B-7FA99D530F40}
+	EndGlobalSection
+EndGlobal

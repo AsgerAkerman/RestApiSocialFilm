@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1bfc8ed1380145a2b4dc10ba05d912df" Name="Diagram1">
+        <EntityTypeShape EntityType="yndlingsfilmDBModel.Movies" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="yndlingsfilmDBModel.Rated" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="yndlingsfilmDBModel.Reviews" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="yndlingsfilmDBModel.Users" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="yndlingsfilmDBModel.Relationship" Width="1.5" PointX="7.5" PointY="3" IsExpanded="true" />
+        <AssociationConnector Association="yndlingsfilmDBModel.FK_Rated_MovieId" ManuallyRouted="false" />
+        <AssociationConnector Association="yndlingsfilmDBModel.FK_Reviews_MovieId" ManuallyRouted="false" />
+        <AssociationConnector Association="yndlingsfilmDBModel.FK_Users_MovieId" ManuallyRouted="false" />
+        <AssociationConnector Association="yndlingsfilmDBModel.FK_Users_RatedId" ManuallyRouted="false" />
+        <AssociationConnector Association="yndlingsfilmDBModel.FK_Users_ReviewId" ManuallyRouted="false" />
+        <AssociationConnector Association="yndlingsfilmDBModel.FK_Relationship_userId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
