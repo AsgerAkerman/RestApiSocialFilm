@@ -66,6 +66,7 @@ namespace RestApiSocialFilm.Controllers
 
             using (var entities = new yndlingsfilmDBEntities())
             {
+                //DATABASE QUERY. CHECKS THE DATABASE FOR THE USER WITH THE GIVEN USERID. THEN IT CREATES A NEW USER VARIABLE THAT WE DECLARE ALL OF THE GIVEN VARIBLES FROM THE HTTP PUT REQUEST
                 var existingUser = entities.Users
                     .FirstOrDefault(s => s.UserId == user.UserId);
 
