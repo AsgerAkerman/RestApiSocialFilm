@@ -16,7 +16,7 @@ namespace RestApiSocialFilm
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "socialFilm/{controller}/{id}",
+                routeTemplate: "cinemano/",
                 defaults: new { id = RouteParameter.Optional }
 
             ); 

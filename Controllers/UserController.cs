@@ -1,14 +1,18 @@
-﻿using DataBaseAccess;
+﻿using System;
+using DataBaseAccess;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
 namespace RestApiSocialFilm.Controllers
 {
-    [RoutePrefix("Users")]
+    //All calls will get the url below: 
+    [RoutePrefix("cinemano/user")]
     public class UserController : ApiController
     {
 
+        //GET ALL REUQEST FOR USER
+        [Route("")]
         public IEnumerable<Users> GetAllUsers()
         {
             using (yndlingsfilmDBEntities entities = new yndlingsfilmDBEntities())
@@ -17,6 +21,9 @@ namespace RestApiSocialFilm.Controllers
             }
         }
 
+
+        //GET REUQEST FOR USER
+        [Route("{id}")]
         public Users GetUserById(int id)
         {
             using (yndlingsfilmDBEntities entities = new yndlingsfilmDBEntities())
@@ -24,9 +31,10 @@ namespace RestApiSocialFilm.Controllers
                 return entities.Users.FirstOrDefault(e => e.UserId == id);
             }
         }
-        //POST REQUEST FOR USER
 
-        public IHttpActionResult CreateUser([FromBody] Users user)
+        //POST REQUEST FOR USER. CREATES A NEW USER
+        [Route("")]
+        public IHttpActionResult PostUser([FromBody] Users user)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Invalid data.");
@@ -42,10 +50,14 @@ namespace RestApiSocialFilm.Controllers
                 }); ;
 
                 entities.SaveChanges();
+                Console.WriteLine("User was created with following information:" +  user.Username + user.Password + user.Email);
             }
-
+          
             return Ok();
         }
 
+
+        
     }
+
 }
