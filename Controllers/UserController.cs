@@ -56,8 +56,44 @@ namespace RestApiSocialFilm.Controllers
             return Ok();
         }
 
+        //PUT REQUEST FOR USER. CHANGES USER
+        [Route("")]
+        public IHttpActionResult PutUser([FromBody] Users user)
+        {
 
-        
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            using (var entities = new yndlingsfilmDBEntities())
+            {
+                var existingUser = entities.Users
+                    .FirstOrDefault(s => s.UserId == user.UserId);
+
+                if (existingUser != null)
+                {
+                   
+                   
+                    existingUser.Email = user.Email;
+                    existingUser.MovieId = user.MovieId;
+                    existingUser.Movies = user.Movies;
+                    existingUser.Password = user.Password;
+                    existingUser.Rated = user.Rated;
+                    existingUser.RatedId = user.RatedId;
+                    existingUser.Relationship = user.Relationship;
+                    existingUser.Reviews = user.Reviews;
+
+                    entities.SaveChanges();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
+            return Ok();
+        }
     }
+    }
+
 
 }
