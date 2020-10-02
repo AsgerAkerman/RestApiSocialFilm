@@ -50,9 +50,9 @@ namespace RestApiSocialFilm.Controllers
                 }); ;
 
                 entities.SaveChanges();
-                Console.WriteLine("User was created with following information:" +  user.Username + user.Password + user.Email);
+                Console.WriteLine("User was created with following information:" + user.Username + user.Password + user.Email);
             }
-          
+
             return Ok();
         }
 
@@ -72,8 +72,8 @@ namespace RestApiSocialFilm.Controllers
 
                 if (existingUser != null)
                 {
-                   
-                   
+
+
                     existingUser.Email = user.Email;
                     existingUser.MovieId = user.MovieId;
                     existingUser.Movies = user.Movies;
@@ -93,8 +93,30 @@ namespace RestApiSocialFilm.Controllers
 
             return Ok();
         }
-    }
-    }
 
 
+        //DELETE REQUEST FOR USER
+        [Route("")]
+        public IHttpActionResult DeleteUser(int id)
+        {
+            if (id <= 0)
+                return BadRequest("Not a valid student id");
+            using (var entities = new yndlingsfilmDBEntities())
+            {
+                //DATABASE QUERY. CHECKS THE DATABASE FOR THE USER WITH THE GIVEN USERID. THEN IT CREATES A NEW USER VARIABLE THAT WE DECLARE ALL OF THE GIVEN VARIBLES FROM THE HTTP PUT REQUEST
+                var existingUser = entities.Users
+                    .FirstOrDefault(s => s.UserId == id);
+
+                if (existingUser != null)
+                {
+                    entities.Entry(existingUser).State = System.Data.Entity.EntityState.Deleted;
+                    entities.SaveChanges();
+                }
+                return Ok();
+            }
+        }
+    }
 }
+
+
+
