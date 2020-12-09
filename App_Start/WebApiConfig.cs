@@ -18,7 +18,7 @@ namespace RestApiSocialFilm
 
             // Web API routes
             config.MapHttpAttributeRoutes();
-            //Filter som findes i userauthentocation
+            //Filter som findes i userauthentication
             config.Filters.Add(new RequireHttpsAttribute());
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

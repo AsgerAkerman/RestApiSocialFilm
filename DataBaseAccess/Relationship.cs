@@ -9,17 +9,15 @@
 
 namespace DataBaseAccess
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
     public partial class Relationship
     {
-        public int userOneId { get; set; }
-        public int userTwoId { get; set; }
-        public int relationshipId { get; set; }
-
-        [JsonIgnore]
+        public int userone_id { get; set; }
+        public int usertwo_id { get; set; }
+        public int relationship_id { get; set; }
+    
         public virtual Users Users { get; set; }
     }
 }

@@ -22,17 +22,17 @@ namespace DataBaseAccess
             this.Reviews = new HashSet<Reviews>();
         }
     
-        public int MovieId { get; set; }
+        public int movie_id { get; set; }
         public string Title { get; set; }
-        public int UserId { get; set; }
-    
+        public int user_id { get; set; }
+        
+        [JsonIgnore]
+        public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         [JsonIgnore]
         public virtual ICollection<Rated> Rated { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         [JsonIgnore]
         public virtual ICollection<Reviews> Reviews { get; set; }
-        [JsonIgnore]
-        public virtual Users Users { get; set; }
     }
 }

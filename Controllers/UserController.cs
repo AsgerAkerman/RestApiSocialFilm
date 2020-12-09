@@ -9,13 +9,16 @@ namespace RestApiSocialFilm.Controllers
 {
     //All calls will get the url below: 
     [RoutePrefix("cinemano/user")]
+    [RequireHttps]
     public class UserController : ApiController
     {
 
 
         //GET ALL REUQEST FOR USER
        
+
         [Route("")]
+        [Authorize]
         public IEnumerable<Users> GetAllUsers()
         {
             using (yndlingsfilmDBEntities entities = new yndlingsfilmDBEntities())
@@ -28,14 +31,13 @@ namespace RestApiSocialFilm.Controllers
 
         //GET REUQEST FOR USER
         [Route("{id}")]
-        [RequireHttps]
         public Users GetUserById(int id)
         {
 
             using (yndlingsfilmDBEntities entities = new yndlingsfilmDBEntities())
             {
                 entities.Configuration.LazyLoadingEnabled = false;
-                return (entities.Users.FirstOrDefault(e => e.UserId == id));
+                return (entities.Users.FirstOrDefault(e => e.user_id == id));
             }
         }
 
@@ -77,7 +79,7 @@ namespace RestApiSocialFilm.Controllers
             {
                 //DATABASE QUERY. CHECKS THE DATABASE FOR THE USER WITH THE GIVEN USERID. THEN IT CREATES A NEW USER VARIABLE THAT WE DECLARE ALL OF THE GIVEN VARIBLES FROM THE HTTP PUT REQUEST
                 var existingUser = entities.Users
-                    .FirstOrDefault(s => s.UserId == user.UserId);
+                    .FirstOrDefault(s => s.user_id == user.user_id);
 
                 if (existingUser != null)
                 {
@@ -110,7 +112,7 @@ namespace RestApiSocialFilm.Controllers
             {
                 //DATABASE QUERY. CHECKS THE DATABASE FOR THE USER WITH THE GIVEN USERID. THEN IT CREATES A NEW USER VARIABLE THAT WE DECLARE ALL OF THE GIVEN VARIBLES FROM THE HTTP PUT REQUEST
                 var existingUser = entities.Users
-                    .FirstOrDefault(s => s.UserId == id);
+                    .FirstOrDefault(s => s.user_id == id);
 
                 if (existingUser != null)
                 {
@@ -124,19 +126,18 @@ namespace RestApiSocialFilm.Controllers
         public IEnumerable<Relationship> GetFriendlist(int id)
         {
 
-
             using (var entities = new yndlingsfilmDBEntities())
             {
-
-                var FriendshipsList = entities.Relationship.Where(s => s.userOneId == id).ToList().AsEnumerable();
+                var FriendshipsList = entities.Relationship.Where(s => s.userone_id == id).ToList().AsEnumerable();
 
 
                 return FriendshipsList;
             }
 
         }
-
+       
         [Route("{Username}/{Password}")]
+        [Authorize]
         public Boolean GetLoginUser(String Username, String Password)
         {
 
@@ -144,11 +145,6 @@ namespace RestApiSocialFilm.Controllers
             {
                 var tempUser = entities.Users.FirstOrDefault(u => u.Username == Username);
                
-
-
-                System.Diagnostics.Debug.WriteLine(tempUser.Password + "er der mellemrum her    ");
-                System.Diagnostics.Debug.WriteLine(Password);
-                System.Diagnostics.Debug.WriteLine(BCrypt.Net.BCrypt.Verify(Password, tempUser.Password));
                 if (BCrypt.Net.BCrypt.Verify(Password, tempUser.Password))
                 {
                     return true;
@@ -159,7 +155,7 @@ namespace RestApiSocialFilm.Controllers
 
         //GET REUQEST FOR USER + GETS FRIENDSHIP
         [Route("username/{username}")]
-        [RequireHttps]
+        [Authorize]
         public Users GetUserById(String username)
         {
 

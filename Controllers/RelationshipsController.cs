@@ -49,7 +49,7 @@ namespace RestApiSocialFilm.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != relationship.userOneId)
+            if (id != relationship.userone_id)
             {
                 return BadRequest();
             }
@@ -86,8 +86,8 @@ namespace RestApiSocialFilm.Controllers
             {
                 entities.Relationship.Add(new Relationship()
                 {
-                    userOneId = relationship.userOneId,
-                    userTwoId = relationship.userTwoId
+                    userone_id = relationship.userone_id,
+                    usertwo_id = relationship.usertwo_id
 
 
                 }); ;
@@ -126,7 +126,7 @@ namespace RestApiSocialFilm.Controllers
 
         private bool RelationshipExists(int id)
         {
-            return db.Relationship.Count(e => e.userOneId == id) > 0;
+            return db.Relationship.Count(e => e.userone_id == id) > 0;
         }
 
 
@@ -140,21 +140,21 @@ namespace RestApiSocialFilm.Controllers
             {
                 entities.Configuration.LazyLoadingEnabled = false;
 
-                var FriendshipsList = from s in entities.Relationship where s.userOneId == id || s.userTwoId == id select s;
+                var FriendshipsList = from s in entities.Relationship where s.userone_id == id || s.usertwo_id == id select s;
 
                 foreach (var relationship in FriendshipsList.ToList())
                 {
-                    if (relationship.userOneId != id)
+                    if (relationship.userone_id != id)
                     {
-                        int idd = relationship.userOneId;
-                        Users user = uC.GetUserById(relationship.userOneId);
-                        Console.WriteLine(user.UserId);
+                        int idd = relationship.userone_id;
+                        Users user = uC.GetUserById(relationship.userone_id);
+                        Console.WriteLine(user.user_id);
                         UserList.Add(user);
                     }
-                    if(relationship.userTwoId != id)
+                    if(relationship.usertwo_id != id)
                     {
-                        Users user = uC.GetUserById(relationship.userTwoId);
-                        Console.WriteLine(user.UserId);
+                        Users user = uC.GetUserById(relationship.usertwo_id);
+                        Console.WriteLine(user.user_id);
                         UserList.Add(user);
 
                     }

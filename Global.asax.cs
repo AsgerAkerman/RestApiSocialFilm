@@ -11,6 +11,8 @@ namespace RestApiSocialFilm
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
+
+        //koden nedenfor køres ved application start. Filerne ligger i app_start
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();

@@ -16,9 +16,10 @@ namespace DataBaseAccess
     public partial class Highscore
     {
         public int highscore_id { get; set; }
-        public int spil_id { get; set; }
+        public int game_id { get; set; }
         public Nullable<int> score { get; set; }
         public int user_id { get; set; }
+
         [JsonIgnore]
         public virtual Users Users { get; set; }
     }

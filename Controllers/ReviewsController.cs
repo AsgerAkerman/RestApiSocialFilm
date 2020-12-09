@@ -49,7 +49,7 @@ namespace RestApiSocialFilm.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != reviews.ReviewId)
+            if (id != reviews.review_id)
             {
                 return BadRequest();
             }
@@ -88,7 +88,7 @@ namespace RestApiSocialFilm.Controllers
             db.Reviews.Add(reviews);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = reviews.ReviewId }, reviews);
+            return CreatedAtRoute("DefaultApi", new { id = reviews.review_id }, reviews);
         }
 
         
@@ -119,7 +119,7 @@ namespace RestApiSocialFilm.Controllers
 
         private bool ReviewsExists(int id)
         {
-            return db.Reviews.Count(e => e.ReviewId == id) > 0;
+            return db.Reviews.Count(e => e.review_id == id) > 0;
         }
     }
 }

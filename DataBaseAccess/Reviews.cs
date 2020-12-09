@@ -15,10 +15,10 @@ namespace DataBaseAccess
     
     public partial class Reviews
     {
-        public int ReviewId { get; set; }
-        public string ReviewText { get; set; }
-        public int MovieId { get; set; }
-        public int UserId { get; set; }
+        public int review_id { get; set; }
+        public string review_text { get; set; }
+        public int movie_id { get; set; }
+        public int user_id { get; set; }
 
         [JsonIgnore]
         public virtual Movies Movies { get; set; }

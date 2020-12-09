@@ -44,7 +44,7 @@ namespace RestApiSocialFilm.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != movies.MovieId)
+            if (id != movies.movie_id)
             {
                 return BadRequest();
             }
@@ -82,7 +82,7 @@ namespace RestApiSocialFilm.Controllers
             db.Movies.Add(movies);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = movies.MovieId }, movies);
+            return CreatedAtRoute("DefaultApi", new { id = movies.movie_id }, movies);
         }
 
         // DELETE: api/Movies/5
@@ -112,7 +112,7 @@ namespace RestApiSocialFilm.Controllers
 
         private bool MoviesExists(int id)
         {
-            return db.Movies.Count(e => e.MovieId == id) > 0;
+            return db.Movies.Count(e => e.movie_id == id) > 0;
         }
     }
 }
