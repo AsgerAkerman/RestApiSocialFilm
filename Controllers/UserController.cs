@@ -15,8 +15,6 @@ namespace RestApiSocialFilm.Controllers
 
 
         //GET ALL REUQEST FOR USER
-       
-
         [Route("")]
         [Authorize]
         public IEnumerable<Users> GetAllUsers()

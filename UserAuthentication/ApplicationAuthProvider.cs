@@ -16,7 +16,7 @@ namespace RestApiSocialFilm.UserAuthentication
       
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
-            Console.WriteLine("We are in the start of application auth");
+
             context.Validated();
         }
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)

@@ -22,7 +22,7 @@ namespace RestApiSocialFilm.App_Start
                 TokenEndpointPath = new PathString("/token"),
                 Provider = new ApplicationAuthProvider(),
                 AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(60),
-                AllowInsecureHttp = true
+                AllowInsecureHttp = false
             };
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseOAuthAuthorizationServer(option);
