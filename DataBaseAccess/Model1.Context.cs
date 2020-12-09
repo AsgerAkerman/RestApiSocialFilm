@@ -28,7 +28,9 @@ namespace DataBaseAccess
         public virtual DbSet<Movies> Movies { get; set; }
         public virtual DbSet<Rated> Rated { get; set; }
         public virtual DbSet<Reviews> Reviews { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Relationship> Relationship { get; set; }
+        public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Highscore> Highscore { get; set; }
     }
 }

@@ -9,20 +9,16 @@
 
 namespace DataBaseAccess
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
-    public partial class Reviews
+    public partial class database_firewall_rules
     {
-        public int ReviewId { get; set; }
-        public string ReviewText { get; set; }
-        public int MovieId { get; set; }
-        public int UserId { get; set; }
-
-        [JsonIgnore]
-        public virtual Movies Movies { get; set; }
-        [JsonIgnore]
-        public virtual Users Users { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public string start_ip_address { get; set; }
+        public string end_ip_address { get; set; }
+        public System.DateTime create_date { get; set; }
+        public System.DateTime modify_date { get; set; }
     }
 }

@@ -9,6 +9,7 @@
 
 namespace DataBaseAccess
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -16,9 +17,9 @@ namespace DataBaseAccess
     {
         public int userOneId { get; set; }
         public int userTwoId { get; set; }
-        public byte Status { get; set; }
-        public int actionUserId { get; set; }
-    
+        public int relationshipId { get; set; }
+
+        [JsonIgnore]
         public virtual Users Users { get; set; }
     }
 }

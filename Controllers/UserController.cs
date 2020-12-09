@@ -3,6 +3,7 @@ using DataBaseAccess;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using RestApiSocialFilm.UserAuthentication;
 
 namespace RestApiSocialFilm.Controllers
 {
@@ -11,12 +12,15 @@ namespace RestApiSocialFilm.Controllers
     public class UserController : ApiController
     {
 
+
         //GET ALL REUQEST FOR USER
+       
         [Route("")]
         public IEnumerable<Users> GetAllUsers()
         {
             using (yndlingsfilmDBEntities entities = new yndlingsfilmDBEntities())
             {
+                entities.Configuration.LazyLoadingEnabled = false;
                 return entities.Users.ToList();
             }
         }
@@ -24,11 +28,14 @@ namespace RestApiSocialFilm.Controllers
 
         //GET REUQEST FOR USER
         [Route("{id}")]
+        [RequireHttps]
         public Users GetUserById(int id)
         {
+
             using (yndlingsfilmDBEntities entities = new yndlingsfilmDBEntities())
             {
-                return entities.Users.FirstOrDefault(e => e.UserId == id);
+                entities.Configuration.LazyLoadingEnabled = false;
+                return (entities.Users.FirstOrDefault(e => e.UserId == id));
             }
         }
 
@@ -36,6 +43,7 @@ namespace RestApiSocialFilm.Controllers
         [Route("")]
         public IHttpActionResult PostUser([FromBody] Users user)
         {
+           
             if (!ModelState.IsValid)
                 return BadRequest("Invalid data.");
 
@@ -43,8 +51,9 @@ namespace RestApiSocialFilm.Controllers
             {
                 entities.Users.Add(new Users()
                 {
+                        
                     Username = user.Username,
-                    Password = user.Password,
+                    Password = BCrypt.Net.BCrypt.HashPassword(user.Password),
                     Email = user.Email,
 
                 }); ;
@@ -73,15 +82,11 @@ namespace RestApiSocialFilm.Controllers
                 if (existingUser != null)
                 {
 
-
+                    existingUser.Username = user.Username;
                     existingUser.Email = user.Email;
-                    existingUser.MovieId = user.MovieId;
-                    existingUser.Movies = user.Movies;
                     existingUser.Password = user.Password;
-                    existingUser.Rated = user.Rated;
-                    existingUser.RatedId = user.RatedId;
-                    existingUser.Relationship = user.Relationship;
-                    existingUser.Reviews = user.Reviews;
+
+
 
                     entities.SaveChanges();
                 }
@@ -96,7 +101,7 @@ namespace RestApiSocialFilm.Controllers
 
 
         //DELETE REQUEST FOR USER
-        [Route("")]
+        [Route("{id}")]
         public IHttpActionResult DeleteUser(int id)
         {
             if (id <= 0)
@@ -115,8 +120,58 @@ namespace RestApiSocialFilm.Controllers
                 return Ok();
             }
         }
+        [Route("flist/{id}")]
+        public IEnumerable<Relationship> GetFriendlist(int id)
+        {
+
+
+            using (var entities = new yndlingsfilmDBEntities())
+            {
+
+                var FriendshipsList = entities.Relationship.Where(s => s.userOneId == id).ToList().AsEnumerable();
+
+
+                return FriendshipsList;
+            }
+
+        }
+
+        [Route("{Username}/{Password}")]
+        public Boolean GetLoginUser(String Username, String Password)
+        {
+
+            using (yndlingsfilmDBEntities entities = new yndlingsfilmDBEntities())
+            {
+                var tempUser = entities.Users.FirstOrDefault(u => u.Username == Username);
+               
+
+
+                System.Diagnostics.Debug.WriteLine(tempUser.Password + "er der mellemrum her    ");
+                System.Diagnostics.Debug.WriteLine(Password);
+                System.Diagnostics.Debug.WriteLine(BCrypt.Net.BCrypt.Verify(Password, tempUser.Password));
+                if (BCrypt.Net.BCrypt.Verify(Password, tempUser.Password))
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        //GET REUQEST FOR USER + GETS FRIENDSHIP
+        [Route("username/{username}")]
+        [RequireHttps]
+        public Users GetUserById(String username)
+        {
+
+            using (yndlingsfilmDBEntities entities = new yndlingsfilmDBEntities())
+            {
+                entities.Configuration.LazyLoadingEnabled = false;
+                return (entities.Users.FirstOrDefault(e => e.Username == username));
+            }
+        }
     }
 }
+
 
 
 

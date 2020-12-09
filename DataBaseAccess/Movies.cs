@@ -9,6 +9,7 @@
 
 namespace DataBaseAccess
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -19,17 +20,19 @@ namespace DataBaseAccess
         {
             this.Rated = new HashSet<Rated>();
             this.Reviews = new HashSet<Reviews>();
-            this.Users = new HashSet<Users>();
         }
     
         public int MovieId { get; set; }
         public string Title { get; set; }
+        public int UserId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
         public virtual ICollection<Rated> Rated { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
         public virtual ICollection<Reviews> Reviews { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Users> Users { get; set; }
+        [JsonIgnore]
+        public virtual Users Users { get; set; }
     }
 }

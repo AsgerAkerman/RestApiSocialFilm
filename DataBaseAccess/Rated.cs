@@ -9,23 +9,21 @@
 
 namespace DataBaseAccess
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
     public partial class Rated
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Rated()
-        {
-            this.Users = new HashSet<Users>();
-        }
-    
         public int Id { get; set; }
         public int Rating { get; set; }
         public int MovieId { get; set; }
-    
+        public int UserId { get; set; }
+
+
+        [JsonIgnore]
         public virtual Movies Movies { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Users> Users { get; set; }
+        [JsonIgnore]
+        public virtual Users Users { get; set; }
     }
 }

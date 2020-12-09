@@ -13,15 +13,12 @@ namespace DataBaseAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class Reviews
+    public partial class Highscore
     {
-        public int ReviewId { get; set; }
-        public string ReviewText { get; set; }
-        public int MovieId { get; set; }
-        public int UserId { get; set; }
-
-        [JsonIgnore]
-        public virtual Movies Movies { get; set; }
+        public int highscore_id { get; set; }
+        public int spil_id { get; set; }
+        public Nullable<int> score { get; set; }
+        public int user_id { get; set; }
         [JsonIgnore]
         public virtual Users Users { get; set; }
     }
